@@ -4,7 +4,7 @@ mvn clean package -Dmaven.test.skip=true
 echo '******package end******'
 
 echo '******rm root.war start******'
-rm /home/dogmell/jetty/webapps/root.war
+rm /home/yangzhengren/jetty/webapps/root.war
 echo '******rm root.war end******'
 
 echo '******cp root.war start******'
