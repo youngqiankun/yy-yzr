@@ -15,7 +15,7 @@ public class IndexController {
 
     @GetMapping
     public String index() {
-        return "李影影是个小狗狗";
+        return "大家好，我是杨大宝";
     }
 
     @GetMapping("weather/now.json")
