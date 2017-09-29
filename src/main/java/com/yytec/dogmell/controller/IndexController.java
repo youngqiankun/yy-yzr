@@ -32,6 +32,6 @@ public class IndexController {
     @GetMapping("code")
     public void code(HttpServletResponse response, @RequestParam String redirect_uri) throws Exception {
         log.info("******redirect_uri:{}", redirect_uri);
-        response.sendRedirect(redirect_uri + "?openid=" + new Date().getTime());
+        response.sendRedirect(redirect_uri + "?code=" + new Date().getTime());
     }
 }
