@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
-echo '******package start******'
+echo '******git pull start******'
+git pull
+echo '******git pull end********'
+sh /home/yangzhengren/jetty/bin/jetty.sh stop
+
 mvn clean package -Dmaven.test.skip=true
-echo '******package end******'
 
-echo '******rm root.war start******'
 rm /home/yangzhengren/jetty/webapps/root.war
-echo '******rm root.war end******'
 
-echo '******cp root.war start******'
 cp target/root.war /home/yangzhengren/jetty/webapps
-echo '******cp root.war end******'
 
-echo '******jetty restart******'
-sh /home/yangzhengren/jetty/bin/jetty.sh restart
+sh /home/yangzhengren/jetty/bin/jetty.sh start
