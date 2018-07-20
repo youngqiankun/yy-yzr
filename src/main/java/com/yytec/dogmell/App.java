@@ -7,6 +7,8 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 /**
  * Hello world!
+ *
+ * @author yangqiankun
  */
 @SpringBootApplication
 public class App extends SpringBootServletInitializer {
