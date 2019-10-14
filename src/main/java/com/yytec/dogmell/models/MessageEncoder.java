@@ -11,7 +11,7 @@ import javax.websocket.EndpointConfig;
  * @date 10/5/19 10:04
  */
 public class MessageEncoder implements Encoder.Text<Message> {
-    private static Gson gson;
+    private static Gson gson = new Gson();
 
     @Override
     public String encode(Message message) throws EncodeException {

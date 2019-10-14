@@ -4,6 +4,7 @@ import com.yytec.dogmell.models.Message;
 import com.yytec.dogmell.models.MessageDecoder;
 import com.yytec.dogmell.models.MessageEncoder;
 import lombok.EqualsAndHashCode;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
@@ -17,6 +18,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @author yangyang
  * @date 10/5/19 09:55
  */
+@Slf4j
 @EqualsAndHashCode
 @ServerEndpoint(value = "/chat/{username}", decoders = MessageDecoder.class, encoders = MessageEncoder.class)
 public class ChatEndpoint {
@@ -26,6 +28,7 @@ public class ChatEndpoint {
 
     @OnOpen
     public void onOpen(Session session, @PathParam("username") String username) {
+        log.info("******username:{}", username);
         this.session = session;
         chatEndpoints.add(this);
         users.put(session.getId(), username);
@@ -58,7 +61,8 @@ public class ChatEndpoint {
 
     private static void broadcast(Message message) {
 
-        for (ChatEndpoint endpoint : chatEndpoints) {
+        chatEndpoints.forEach(endpoint -> {
+            log.info("******id:{}; message:{}", endpoint.session.getId(), message);
             synchronized (endpoint) {
                 try {
                     endpoint.session.getBasicRemote().sendObject(message);
@@ -66,6 +70,6 @@ public class ChatEndpoint {
                     e.printStackTrace();
                 }
             }
-        }
+        });
     }
 }
